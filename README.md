@@ -25,7 +25,7 @@ We highly recommend viewing the code of the built-in blocks to better understand
 
 # settings.json
 
-```json
+```javascript
 {
 	"name": "Button", // Displayed in the blocks grid [required]
 	"handle": "button", // A unique handle for the block [required]
@@ -44,7 +44,7 @@ We highly recommend viewing the code of the built-in blocks to better understand
 
 # schema.json
 
-```json
+```javascript
 {
 	"resizable": true, // Whether the height of the block can be resizable [default: false]
 	"manageNarrowWidth": false, // Whether the narrow width feature is managed directly by the block [default: false]
@@ -61,7 +61,7 @@ We highly recommend viewing the code of the built-in blocks to better understand
 
 The following fields are supported for the *properties* property.
 
-```json
+```javascript
 [
 	{ // Text Field
 		"name": "Text", // Title that displays above the field in the editor [required]
@@ -193,7 +193,7 @@ Fields have an extra property that you can use, the showWhen property. It allows
 
 The condition follows this format:
 
-```json
+```javascript
 {
 	"variable": "size",
   "comparator": ">", // Possible comparators: ==, !=, >, <, >=, <= [default: ==]
@@ -205,7 +205,7 @@ The when using the == comparator, the value property can be an array in which ca
 
 You can have multiple conditions by putting them in an Array:
 
-```json
+```javascript
 [
 	{ // A
 		"variable": "size",
@@ -226,7 +226,7 @@ A && B
 
 You can use the *OR* operator by putting the condition in a second Array:
 
-```json
+```javascript
 [
 	[
 		{ // A
@@ -258,7 +258,7 @@ Translates to show the field when the size value is above 5 and below 10 or if t
 
 Schema elements are a way to allow the user to customize the styling of the elements in the block. You simply need to *tag* the HTML elements using the *yawb-element* attribute (space separated list) and define the elements’ customizations in the schema.
 
-```jsx
+```javascript
 {
 	"name": "Block of text", // Name of the element
 	"handle": "text", // Handle of the element that is used in the yawb-element HTML attribute
@@ -427,7 +427,7 @@ In addition to what the singlelineText filter does, this filter also replaces ne
 
 When you inject text content to the element, you can mark that HTML element as editable using the yawb-editable attribute and type the name of the variable as its value. That way the user can edit that text directly in the preview section.
 
-```json
+```javascript
 <div yawb-editable="content">{{ content | multilineText }}</div>
 ```
 
@@ -435,7 +435,7 @@ When you inject text content to the element, you can mark that HTML element as e
 
 You can mark an element as customizable by adding the *yawb-element* attribute and specify which element this is (must match the handle of the element you specified in the schema file):
 
-```json
+```javascript
 <div yawb-element="customizable">Hello world</div>
 ```
 
@@ -493,7 +493,7 @@ The script file is similar to the stylesheet. In scripts too, you must always pr
 
 This means that your code should look like this:
 
-```jsx
+```javascript
 document.querySelector('#_BLOCK_ .button').addEventListener('click', ()=>alert('Clicked!'));
 ```
 

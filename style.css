@@ -1,0 +1,20 @@
+#_BLOCK_ {
+	display: block;
+	text-align: center;
+	position:relative;
+}
+#_BLOCK_ .image {
+	outline: 4px solid {{ "outlinecolor" | css_var }};
+    outline-offset:-8px;
+	object-fit:{{ "mode" | css_var }};
+	width:{{ "size" | css_var }};
+	height:{{ "size" | css_var }};
+}
+
+#_BLOCK_ .caption {
+	position: absolute;
+    display:block;
+	top:10px;
+	left:50%;
+	transform:rotate({{ "rotation" | css_var }}) translateX(-50%);
+}

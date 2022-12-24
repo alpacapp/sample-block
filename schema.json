@@ -1,0 +1,127 @@
+{
+    "elements": [
+      {
+          "name": "Caption",
+          "handle": "caption",
+          "customizations": [
+              "color",
+              "background-color",
+              "font-family",
+              "font-size",
+              "font-weight",
+              "font-style",
+              "text-transform",
+              "text-decoration",
+              "letter-spacing",
+              "line-height",
+              "text-align",
+              "padding",
+              "margin",
+              "opacity",
+              "border",
+              "border-radius",
+              "filter",
+              "transition"
+          ],
+          "hoverCustomizations": true,
+          "activeCustomizations": true,
+          "defaults": {
+            "color"				: "#000000",
+    		"background-color"	: "#FFFFFF33",
+    		"font-weight"		: 600,
+            "text-transform"	: "uppercase",
+            "text-align"		: "center",
+            "padding"			: [4, 8, 4, 8],
+    		"border-radius"		: 3,
+    		"transition"		: 0.25
+          },
+          "defaultsHover": {
+            "color"				: "#FFFFFF",
+    		"background-color"	: "#00000033"
+          }
+      }
+    ],
+	"properties"	: [
+		{
+			"name": "Image",
+			"variable": "img",
+			"type": "image",
+			"default": "https://images.unsplash.com/photo-1551044514-e7fdee420512?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2000&q=80"
+		},
+		{
+			"name": "Image mode",
+			"variable": "mode",
+			"type": "dropdown",
+            "cssVariable": true,
+			"options": [
+				{
+					"name": "Cover",
+					"value": "cover"
+				},
+				{
+					"name": "Contain",
+					"value": "contain"
+				},
+				{
+					"name": "Fill",
+					"value": "fill"
+				}
+			],
+			"default": "cover"
+		},
+		{
+			"name": "Image Size",
+			"variable": "size",
+			"type": "slider",
+            "cssVariable": true,
+			"default": 300,
+			"min": 100,
+			"max": 1000,
+			"unit": "px"
+		},
+		{
+			"name": "Image outline",
+			"variable": "outlinecolor",
+			"type": "color",
+            "cssVariable": true,
+			"default": "#0DBBE5"
+		},
+		{
+			"name": "Caption",
+			"variable": "caption",
+			"type": "text",
+			"maxLength": 30
+		},
+		{
+			"name"			: "Type a caption in the field above.",
+			"type"			: "instruction",
+			"level"			: "info",
+			"showWhen"		: {"variable": "caption", "value": ""}
+		},
+		{
+			"name": "Collection of fields",
+			"type": "section",
+			"collapsed": false,
+			"fields"		: [
+				{
+					"name"			: "Caption rotation",
+					"variable"		: "rotation",
+					"type"			: "number",
+                    "cssVariable": true,
+					"default"		: 0,
+					"min"			: -360,
+					"max"			: 360,
+					"integer"		: true,
+					"unit"			: "deg"
+				},
+				{
+					"name": "Url",
+					"variable": "url",
+					"type": "url",
+					"default": "https://app.yawb.io/"
+				}
+			],
+			"showWhen"		: {"variable": "caption", "comparator": "!=", "value": ""}
+		}
+	]
+}

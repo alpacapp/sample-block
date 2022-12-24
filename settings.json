@@ -1,0 +1,11 @@
+{
+	"name"			: "Sample Block",
+	"handle"		: "sample-block",
+	"author"		: "yawb",
+	"category"		: "basic",
+	"description"	: "",
+	"entry"			: "block.liquid",
+	"stylesheet"	: "style.css",
+	"script"		: "script.js",
+	"icon"			: "science"
+}

@@ -1,7 +1,3 @@
-# Write basic documentation for creating custom blocks
-
-Status: In progress
-
 This sample block is a reference to help you start building your own blocks and use them in YAWB.io
 
 [YAWB.io](https://app.yawb.io) stands for Yet Another Website Builder and it’s the most flexible and extendable website building platform there is while being easy to use and user-friendly.
@@ -381,6 +377,16 @@ Generates:
 }
 ```
 
+### isActiveUrl
+Returns a boolean when the URL that is passed to it is the URL of the current page. It's a useful helper that can be used when building navigation links to highlight the current page.
+```html
+{% for link in menu %}
+	{% assign activeUrl = link.url | isActiveUrl %}
+	<a href="{{ link.url }}" class="{% if activeUrl %}current-page{% endif %}">{{ link.name }}</a>
+{% endfor %}
+```
+
+
 ### relative_time
 Takes a date value and generate a relative time value from it.
 ```html
@@ -421,6 +427,42 @@ In addition to what the singlelineText filter does, this filter also replaces ne
 
 ```html
 {{ html | raw }}
+```
+
+## Variables
+You can refer to the values of the block properties that are defined in the schema file directly in the liquid code like this:
+```html
+{{ variablename }}
+```
+Given that the property is defined in the schema file:
+```javascript
+{
+	"properties":[
+		{
+			{
+				"name": "Text",
+				"variable": "variablename",
+				"type": "text"
+			}
+		}
+	]
+}
+```
+
+You can also access a special variable `_blockSettings` that gives you access to some information about the current block and the page itself:
+```javascript
+_blockSettings = {
+	placeholderMode			: false, // Whether the block is being rendered in the preview frame or in the live site
+	id						: '', // ID of the current block
+	depth					: 0, // Depth of the block. 1 when the block is in a row of blocks and 0 otherwise
+	fullWidth				: true, // Whether the block is full-width or narrow-width.
+	span					: 6, // Number of columns the block takes when it's in a row of blocks. You need to divide by 12 to get the proportion of the width this block takes
+	height					: false, // Height of the block. A number if it's defined (pixels) or false when the block takes it's natural height
+	hideDesktop				: false, // Whether this block should be hidden for desktop devices
+	hideTablet				: false, // Whether this block should be hidden for tablet devices
+	hideMobile				: false, // Whether this block should be hidden for mobile devices
+	narrowWidthDimension	: 1200 // The value of the narrowWidth dimension setting of the site
+}
 ```
 
 ## Editable content
@@ -495,6 +537,43 @@ This means that your code should look like this:
 
 ```javascript
 document.querySelector('#_BLOCK_ .button').addEventListener('click', ()=>alert('Clicked!'));
+```
+
+## YAWB Helpers
+You can use the global YAWB object in your javascript code to access some helper functions:
+```javascript
+// A helper function that takes a form DOM element as an input and returns an object with name-value pairs for each input present in the form.
+var formData = YAWB.serializeForm(formElement, {
+	asArray		: true, // Return the data as an array of fields: {key, value}, otherwise returns the data as an object
+	validate	: true, // Validate the form fields while retrieving the values. If a field doesn't validate, the function returns false
+});
+
+// Asynchronous helper that allows you to send an email to the website owner. This can be used for a contact form as an example.
+var {success, message} = await YAWB.sendEmail([
+	{
+		key		: "name",
+		value	: "John Doe"
+	},
+	{
+		key		: "message",
+		value	: "Hey there"
+	},
+]);
+
+
+
+// Liquid filters:
+// These helpers provide the same functionality as they liquid filter equivalents:
+YAWB.escapeHtml(...);
+YAWB.trim(...);
+YAWB.image_srcset(...);
+YAWB.image_url(...);
+YAWB.css_var(...);
+YAWB.uppercase(...);
+YAWB.lowercase(...);
+YAWB.relative_time(...);
+YAWB.money(...);
+YAWB.date(...);
 ```
 
 # Placeholder

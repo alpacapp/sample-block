@@ -427,7 +427,7 @@ Given a list of notion pages such as `_notionPage.subPages`, this filter is able
 {% assign pages = _notionPage.subPages | notionPagesSort: "dateModified" %}
 ```
 
-### notionPagesSort
+### notionBlocksToHtml
 
 Given a notion page's blocks array such as `_notionPage.blocks`, this filter converts the blocks into their HTML equivalent. This is a helper to easily display the content of a Notion page.
 It also has an optional argument, `hideSubPages` that allows you to render Notion's `child_page` blocks or not.

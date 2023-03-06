@@ -401,6 +401,13 @@ or (depending on the date):
 <span>5 minutes ago</span>
 ```
 
+
+### date
+Formats the date value. Takes an optional argument `showTime` show the time in the formatted date as well.
+```html
+<span>{{ datevalue | date: true }}</span>
+```
+
 ### if: condition[, comparator, value] [, otherwise]
 Conditionaly shows a value:
 ```html
@@ -412,6 +419,21 @@ Will display "Hello world" when the value variable is truthy.
 {{ "Hello world" | if: value, "<", 20, "Foo" }}
 ```
 Will display "Hello world" when the value variable is lower than 20 otherwise it displays "Foo".
+
+### notionPagesSort
+
+Given a list of notion pages such as `_notionPage.subPages`, this filter is able to sort them following a sorting criterion given as an argument. The following sorting modes are available: regular, reverse, dateModified, reverseDateModified, dateCreated, dateCreated.
+```html
+{% assign pages = _notionPage.subPages | notionPagesSort: "dateModified" %}
+```
+
+### notionPagesSort
+
+Given a notion page's blocks array such as `_notionPage.blocks`, this filter converts the blocks into their HTML equivalent. This is a helper to easily display the content of a Notion page.
+It also has an optional argument, `hideSubPages` that allows you to render Notion's `child_page` blocks or not.
+```html
+{{ _notionPage.blocks | notionBlocksToHtml }}
+```
 
 ### singlelineText
 
@@ -462,6 +484,45 @@ _blockSettings = {
 	hideTablet				: false, // Whether this block should be hidden for tablet devices
 	hideMobile				: false, // Whether this block should be hidden for mobile devices
 	narrowWidthDimension	: 1200 // The value of the narrowWidth dimension setting of the site
+}
+```
+
+
+yawb.io also provides the `_notionPage` variable for Notion pages of your websites. This variable is structured as follows:
+```javascript
+_notionPage = {
+	blocks	: [
+		// Array of blocks in the page
+		// This is a simplified version of the blocks returned by the Notion API
+		// https://developers.notion.com/reference/block
+		// You can refer to the official API for a list of blocks types and structure
+		{
+			id: '170cb5c6-28db-4cb1-a7d2-8b4bc580ddb8',
+			type: 'heading_1',
+			hasChildren: false,
+			content: 'Page title',
+			toggleable: false
+		},
+		{
+			id: '6cf2ae45-9dbc-4a0e-8dd1-3f15abd844cd',
+			type: 'paragraph',
+			hasChildren: false,
+			content: 'Hello <b>world.</b>'
+		}
+		// ...
+	],
+	page		: { // Information about the Notion page
+		id: '4368f3dc-c421-431c-a740-c4932c3c0595',	// Notion page ID
+		title: 'yawb.io + Notion',// Title
+		url: 'yawb-io-notion-Q2jz3MQhQxynQMSTLDwFlQ',// Handle (url) of the page
+		cover: false,// Cover image of the page
+		dateCreated: '2023-03-05T18:44:00.000Z',
+		dateModified: '2023-03-06T04:22:00.000Z',
+		parent: 'e440d5fc-0b3c-42e3-a9af-e901d2d2aaa7' // Parent ID of the Notion page
+	},
+	subPages	: [
+		// List of pages that are direct children of the current page.
+	]
 }
 ```
 

@@ -118,7 +118,7 @@
 					"name": "Url",
 					"variable": "url",
 					"type": "url",
-					"default": "https://app.yawb.io/"
+					"default": "https://alpac.app/"
 				}
 			],
 			"showWhen"		: {"variable": "caption", "comparator": "!=", "value": ""}

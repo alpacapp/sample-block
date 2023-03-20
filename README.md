@@ -1,21 +1,21 @@
-This sample block is a reference to help you start building your own blocks and use them in YAWB.io
+This sample block is a reference to help you start building your own blocks and use them in AlpacApp
 
-[YAWB.io](https://app.yawb.io) stands for Yet Another Website Builder and it’s the most flexible and extendable website building platform there is while being easy to use and user-friendly.
+[AlpacApp](https://alpac.app) is the most flexible and extendable website building platform there is while being easy to use and user-friendly.
 
-The power of [YAWB.io](https://app.yawb.io) is its **Blocks System**. You can drag and drop blocks into the pages of your website to build any layout you desire. What makes YAWB.io unique is that contribute and create new blocks. The blocks can be imported and shared.
+The power of [AlpacApp](https://alpac.app) is its **Blocks System**. You can drag and drop blocks into the pages of your website to build any layout you desire. What makes AlpacApp unique is that contribute and create new blocks. The blocks can be imported and shared.
 
 This document explains how to create your own custom blocks.
 
 A Block can consist of a few files:
 
 - settings.json : Settings describing what the block is about, it’s name, handle and the files it needs to work. [Mandatory File]
-- schema.json : Defines the properties and customizations that the block allows. This file is used by [YAWB.io](https://app.yawb.io) to show the customization fields for the block. [Mandatory File]
+- schema.json : Defines the properties and customizations that the block allows. This file is used by [AlpacApp](https://alpac.app) to show the customization fields for the block. [Mandatory File]
 - Entry file : a Liquid template file that contains the HTML of the block. It’s a liquid file meaning that you can inject variables and dynamic content into the template. [Mandatory File]
-- Stylesheet : a CSS file for styling the block. [YAWB.io](https://app.yawb.io) supports using liquid code directly in the stylesheet.
-- Script : a Javascript file for adding functionality to the block. [YAWB.io](https://app.yawb.io) supports using liquid code directly in the script file.
-- Placeholder file : An alternative to the entry file that should be used instead when viewing the block in [YAWB.io](https://app.yawb.io)’s editing mode. When viewing a block in YAWB.io’s editing mode scripts and some HTML tags and attributes are stripped which can break the functionality of the block. You can use the placeholder file as an alternative to show a preview of the block in editing mode.
+- Stylesheet : a CSS file for styling the block. [AlpacApp](https://alpac.app) supports using liquid code directly in the stylesheet.
+- Script : a Javascript file for adding functionality to the block. [AlpacApp](https://alpac.app) supports using liquid code directly in the script file.
+- Placeholder file : An alternative to the entry file that should be used instead when viewing the block in [AlpacApp](https://alpac.app)’s editing mode. When viewing a block in AlpacApp’s editing mode scripts and some HTML tags and attributes are stripped which can break the functionality of the block. You can use the placeholder file as an alternative to show a preview of the block in editing mode.
 
-In this document, we also discuss the grid system that [YAWB.io](https://app.yawb.io) uses.
+In this document, we also discuss the grid system that [AlpacApp](https://alpac.app) uses.
 
 We highly recommend viewing the code of the built-in blocks to better understand how to use the different features and options specified here.
 
@@ -25,7 +25,7 @@ We highly recommend viewing the code of the built-in blocks to better understand
 {
 	"name": "Button", // Displayed in the blocks grid [required]
 	"handle": "button", // A unique handle for the block [required]
-	"author": "yawb", // Must be lowercase and only contain letters, numbers an the dash character [required]
+	"author": "alpacapp", // Must be lowercase and only contain letters, numbers an the dash character [required]
 	"category": "basic", // values: basic, media, advanced, header, footer [required]
 	"description": "",
 	"entry": "block.liquid", // Name of the html file of the block [required]
@@ -36,7 +36,7 @@ We highly recommend viewing the code of the built-in blocks to better understand
 }
 ```
 
-[YAWB.io](https://app.yawb.io) uses JSON5 which means that it parses JSON files more leniently so you can have comments in the JSON file.
+[AlpacApp](https://alpac.app) uses JSON5 which means that it parses JSON files more leniently so you can have comments in the JSON file.
 
 # schema.json
 
@@ -252,12 +252,12 @@ Translates to show the field when the size value is above 5 and below 10 or if t
 
 ## Schema Elements
 
-Schema elements are a way to allow the user to customize the styling of the elements in the block. You simply need to *tag* the HTML elements using the *yawb-element* attribute (space separated list) and define the elements’ customizations in the schema.
+Schema elements are a way to allow the user to customize the styling of the elements in the block. You simply need to *tag* the HTML elements using the *alpacapp-element* attribute (space separated list) and define the elements’ customizations in the schema.
 
 ```javascript
 {
 	"name": "Block of text", // Name of the element
-	"handle": "text", // Handle of the element that is used in the yawb-element HTML attribute
+	"handle": "text", // Handle of the element that is used in the alpacapp-element HTML attribute
 	"customizations": [ // Array of CSS properties that are allowed to be customized. Supported properties:
 		"color",
 		"background-color",
@@ -324,9 +324,9 @@ Liquid is a template engine that has a syntax similar to Handlebars or even Must
 <div>{{ content | uppercase }}</div>
 ```
 
-This will inject the content variable (or block property in the case of [YAWB.io](https://app.yawb.io)) and apply the uppercase filter to it.
+This will inject the content variable (or block property in the case of [AlpacApp](https://alpac.app)) and apply the uppercase filter to it.
 
-Several filters are available. [YAWB.io](https://app.yawb.io) supports the filters provided by [LiquidJS](https://liquidjs.com/filters/overview.html):
+Several filters are available. [AlpacApp](https://alpac.app) supports the filters provided by [LiquidJS](https://liquidjs.com/filters/overview.html):
 
 And in addition defines a few additional filters:
 
@@ -445,7 +445,7 @@ In addition to what the singlelineText filter does, this filter also replaces ne
 
 ### Escaping by default
 
-[YAWB.io](https://app.yawb.io) escapes the output by default to prevent XSS injections. In case you want to inject HTML without escaping, you can use the raw filter like this:
+[AlpacApp](https://alpac.app) escapes the output by default to prevent XSS injections. In case you want to inject HTML without escaping, you can use the raw filter like this:
 
 ```html
 {{ html | raw }}
@@ -488,7 +488,7 @@ _blockSettings = {
 ```
 
 
-yawb.io also provides the `_notionPage` variable for Notion pages of your websites. This variable is structured as follows:
+AlpacApp also provides the `_notionPage` variable for Notion pages of your websites. This variable is structured as follows:
 ```javascript
 _notionPage = {
 	blocks	: [
@@ -513,8 +513,8 @@ _notionPage = {
 	],
 	page		: { // Information about the Notion page
 		id: '4368f3dc-c421-431c-a740-c4932c3c0595',	// Notion page ID
-		title: 'yawb.io + Notion',// Title
-		url: 'yawb-io-notion-Q2jz3MQhQxynQMSTLDwFlQ',// Handle (url) of the page
+		title: 'AlpacApp + Notion',// Title
+		url: 'alpacapp-notion-Q2jz3MQhQxynQMSTLDwFlQ',// Handle (url) of the page
 		cover: false,// Cover image of the page
 		dateCreated: '2023-03-05T18:44:00.000Z',
 		dateModified: '2023-03-06T04:22:00.000Z',
@@ -528,18 +528,18 @@ _notionPage = {
 
 ## Editable content
 
-When you inject text content to the element, you can mark that HTML element as editable using the yawb-editable attribute and type the name of the variable as its value. That way the user can edit that text directly in the preview section.
+When you inject text content to the element, you can mark that HTML element as editable using the alpacapp-editable attribute and type the name of the variable as its value. That way the user can edit that text directly in the preview section.
 
 ```javascript
-<div yawb-editable="content">{{ content | multilineText }}</div>
+<div alpacapp-editable="content">{{ content | multilineText }}</div>
 ```
 
 ## Customizable Elements
 
-You can mark an element as customizable by adding the *yawb-element* attribute and specify which element this is (must match the handle of the element you specified in the schema file):
+You can mark an element as customizable by adding the *alpacapp-element* attribute and specify which element this is (must match the handle of the element you specified in the schema file):
 
 ```javascript
-<div yawb-element="customizable">Hello world</div>
+<div alpacapp-element="customizable">Hello world</div>
 ```
 
 There are some global elements that you can use so that the same styling can be reused across multiple blocks:
@@ -555,7 +555,7 @@ There are some global elements that you can use so that the same styling can be 
 You can combine multiple styles by separating the element handles using a space character:
 
 ```html
-<span yawb-element="button _button _button-large">My button</span>
+<span alpacapp-element="button _button _button-large">My button</span>
 ```
 
 In this example, the button is associated with three styles:
@@ -570,7 +570,7 @@ A CSS + Liquid file to style your block. There are two important things to under
 
 1. Always prepend CSS selectors with #_BLOCK_ 
 
-This keyword will automatically be replaced by [YAWB.io](https://app.yawb.io) to contain your styling to your block only. This ensures that block styles do not interfere with one another. If your block is using a .image class, it won’t interfere with other blocks using the same class.
+This keyword will automatically be replaced by [AlpacApp](https://alpac.app) to contain your styling to your block only. This ensures that block styles do not interfere with one another. If your block is using a .image class, it won’t interfere with other blocks using the same class.
 
 1. You can refer to the block properties that are marked as “cssVariable” using the css_var filter like this:
 
@@ -600,17 +600,17 @@ This means that your code should look like this:
 document.querySelector('#_BLOCK_ .button').addEventListener('click', ()=>alert('Clicked!'));
 ```
 
-## YAWB Helpers
-You can use the global YAWB object in your javascript code to access some helper functions:
+## ALPACAPP Helpers
+You can use the global ALPACAPP object in your javascript code to access some helper functions:
 ```javascript
 // A helper function that takes a form DOM element as an input and returns an object with name-value pairs for each input present in the form.
-var formData = YAWB.serializeForm(formElement, {
+var formData = ALPACAPP.serializeForm(formElement, {
 	asArray		: true, // Return the data as an array of fields: {key, value}, otherwise returns the data as an object
 	validate	: true, // Validate the form fields while retrieving the values. If a field doesn't validate, the function returns false
 });
 
 // Asynchronous helper that allows you to send an email to the website owner. This can be used for a contact form as an example.
-var {success, message} = await YAWB.sendEmail([
+var {success, message} = await ALPACAPP.sendEmail([
 	{
 		key		: "name",
 		value	: "John Doe"
@@ -625,27 +625,27 @@ var {success, message} = await YAWB.sendEmail([
 
 // Liquid filters:
 // These helpers provide the same functionality as they liquid filter equivalents:
-YAWB.escapeHtml(...);
-YAWB.trim(...);
-YAWB.image_srcset(...);
-YAWB.image_url(...);
-YAWB.css_var(...);
-YAWB.uppercase(...);
-YAWB.lowercase(...);
-YAWB.relative_time(...);
-YAWB.money(...);
-YAWB.date(...);
+ALPACAPP.escapeHtml(...);
+ALPACAPP.trim(...);
+ALPACAPP.image_srcset(...);
+ALPACAPP.image_url(...);
+ALPACAPP.css_var(...);
+ALPACAPP.uppercase(...);
+ALPACAPP.lowercase(...);
+ALPACAPP.relative_time(...);
+ALPACAPP.money(...);
+ALPACAPP.date(...);
 ```
 
 # Placeholder
 
-The placeholder file has the same specifications as the entry file. The difference is that it is intended to be used in the editing mode of [YAWB.io](https://app.yawb.io) and should show a preview of the block. **You must not use any scripts in the placeholder file.**
+The placeholder file has the same specifications as the entry file. The difference is that it is intended to be used in the editing mode of [AlpacApp](https://alpac.app) and should show a preview of the block. **You must not use any scripts in the placeholder file.**
 
 If your block doesn’t use scripts to begin with, you can omit the placeholder file as it may not be necessary.
 
-# YAWB.io’s grid system
+# AlpacApp’s grid system
 
-Blocks in [YAWB.io](https://app.yawb.io) are placed on top of each other consecutively.
+Blocks in [AlpacApp](https://alpac.app) are placed on top of each other consecutively.
 
 If the resizable property in the schema allows it, the height of the block can be resized directly in the editing mode. This is useful for images or hero sliders.
 

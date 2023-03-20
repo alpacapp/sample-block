@@ -1,7 +1,7 @@
 {
 	"name"			: "Sample Block",
 	"handle"		: "sample-block",
-	"author"		: "yawb",
+	"author"		: "alpacapp",
 	"category"		: "basic",
 	"description"	: "",
 	"entry"			: "block.liquid",

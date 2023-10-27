@@ -73,8 +73,15 @@ The following fields are supported for the *properties* property.
 			"value": 0 // Value that the variable needs to satisfy for this field to show. Either a string or a number. [required]
 		}
 	},
+	{ // Rich Text (HTML Formatting) Field
+		"name": "Rich Text",
+		"variable": "text",
+		"type": "richText",
+		"default": "Lorem <b>ipsum</b>", // [default: ""]
+		// Other optional fields: showWhen
+	},
 	{ // Instruction field (notice box)
-		"name"			: "Type a text value in the field above.", // 
+		"name"			: "Type a text value in the field above.",
 		"type"			: "instruction",
 		"level"			: "error" // value: error, info, warning, success [default: info]
 		// Other optional fields: showWhen
@@ -443,6 +450,9 @@ Parses a single-line text value. It replaces whitespace when necessary into &nbs
 
 In addition to what the singlelineText filter does, this filter also replaces new lines into <br> tags to reflect new lines in the HTML output.
 
+### richText
+This filter should be used when displaying rich text content. It disables escaping and allows the injection of HTML directly into the page so that formatting works.
+
 ### Escaping by default
 
 [AlpacApp](https://alpac.app) escapes the output by default to prevent XSS injections. In case you want to inject HTML without escaping, you can use the raw filter like this:
@@ -532,6 +542,12 @@ When you inject text content to the element, you can mark that HTML element as e
 
 ```javascript
 <div alpacapp-editable="content">{{ content | multilineText }}</div>
+```
+
+
+For rich text content, you also need to add the `alpacapp-richText` attribute:
+```javascript
+<div alpacapp-editable="content" alpacapp-richText>{{ content | richText }}</div>
 ```
 
 ## Customizable Elements
